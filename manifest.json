@@ -1,0 +1,20 @@
+{
+  "name": "The Ultimate Flirting Vibe Check",
+  "short_name": "Vibe Check",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDFBF7",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/4762/4762311.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/4762/4762311.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
