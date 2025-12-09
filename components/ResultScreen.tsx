@@ -12,12 +12,15 @@ interface ResultScreenProps {
 const ResultScreen: React.FC<ResultScreenProps> = ({ score, resultType, onRestart }) => {
   
   // Chart Data
+  // Chart Data - Adjusted to prevent saturation
+  // Max theoretical score per category is roughly ~70-80 depending on choices.
+  // We'll normalize somewhat so 100 is "God Tier", but real scores show variance.
   const chartData = [
-    { subject: 'Action', A: Math.max(20, Math.min(100, score.L * 1.2)), fullMark: 100 },
-    { subject: 'Sense', A: Math.max(20, Math.min(100, score.E * 1.2)), fullMark: 100 },
-    { subject: 'Aura', A: Math.max(20, Math.min(100, (score.L + score.E) / 1.5)), fullMark: 100 },
-    { subject: 'Empathy', A: Math.max(20, Math.min(100, score.E * 1.5)), fullMark: 100 },
-    { subject: 'Rizz', A: Math.max(20, Math.min(100, (score.L * 0.8 + score.E * 0.5))), fullMark: 100 },
+    { subject: 'Action', A: Math.min(100, Math.round((Math.max(0, score.L) / 70) * 100)), fullMark: 100 },
+    { subject: 'Sense', A: Math.min(100, Math.round((Math.max(0, score.E) / 70) * 100)), fullMark: 100 },
+    { subject: 'Aura', A: Math.min(100, Math.round(((Math.max(0, score.L) + Math.max(0, score.E)) / 140) * 100)), fullMark: 100 },
+    { subject: 'Empathy', A: Math.min(100, Math.round((Math.max(0, score.E) / 60) * 100)), fullMark: 100 }, // Empathy heavily relies on E
+    { subject: 'Rizz', A: Math.min(100, Math.round(((Math.max(0, score.L) * 0.7 + Math.max(0, score.E) * 0.3) / 70) * 100)), fullMark: 100 },
   ];
 
   const getEmoji = (id: string) => {
